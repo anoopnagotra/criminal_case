@@ -11,32 +11,41 @@ from base import response
 
 
 
-class UserAuthViewSet(mixins.ListModelMixin,
-                  mixins.RetrieveModelMixin,
-                  viewsets.GenericViewSet):
+# class UserAuthViewSet(mixins.ListModelMixin,
+#                   mixins.RetrieveModelMixin,
+#                   viewsets.GenericViewSet):
+#
+# 	permission_classes = (AllowAny,)
+# 	queryset = models.Profile.objects.all()
+# 	serializer_class = serializers.ProfileSerializer
+#
+#
+#
+# 	# @list_route(methods=['post'])
+# 	# def register(self, request):
+# 	# 	print("hello in side register")
+# 	# 	serialized = UserSerializer()
+# 	# 	print("ethe")
+# 	# 	return response.Created({"success": "Account successfully created."})
+#
+# #     permission_classes = (AllowAny,)
+# #     queryset = models.City.objects.filter(is_published=True)
+# #     serializer_class = serializers.CitySerializer
+#
+# #     def list(self, request, *args, **kwargs):
+# #         queryset = self.get_queryset()
+# #         for index, item in enumerate(queryset):
+# #             if item.for_festival == True:
+# #                 queryset[index].country = "All Fetivals"
+# #                 queryset[index].state = "/"
+# #         return paginated_response(request, queryset, serializers.CitySerializer)
+#
+# 	def login(self, request):
+# 		print( "I am here in login ")
 
-	permission_classes = (AllowAny,)
-	queryset = models.User.objects.all()
-	serializer_class = serializers.UserSerializer
 
-	@list_route(methods=['post'])
-	def register(self, request):
-		print("hello in side register")
-		serialized = UserSerializer()
-		print("ethe")
-		return response.Created({"success": "Account successfully created."})
+class UserAuthViewSet(viewsets.ModelViewSet):
+    model = models.Profile
+    queryset = models.Profile.objects.all()
+    serializer_class = serializers.ProfileSerializer
 
-#     permission_classes = (AllowAny,)
-#     queryset = models.City.objects.filter(is_published=True)
-#     serializer_class = serializers.CitySerializer
-
-#     def list(self, request, *args, **kwargs):
-#         queryset = self.get_queryset()
-#         for index, item in enumerate(queryset):
-#             if item.for_festival == True:
-#                 queryset[index].country = "All Fetivals"
-#                 queryset[index].state = "/"
-#         return paginated_response(request, queryset, serializers.CitySerializer)
-	
-	def login(self, request):
-		print( "I am here in login ")
