@@ -1,6 +1,6 @@
-# REST framework tutorial
+# Criminal_case Django Rest 
 
-Source code for the [Django REST framework tutorial][tut].
+Source code help from the [Criminal_case Django Rest ][tut].
 
 [tut]: http://www.django-rest-framework.org/tutorial/1-serialization
 
