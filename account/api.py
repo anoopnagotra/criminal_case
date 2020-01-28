@@ -5,6 +5,10 @@ from rest_framework import mixins, viewsets
 from rest_framework.permissions import AllowAny
 from . import models, serializers
 from rest_framework.decorators import list_route, detail_route
+from django.contrib.auth.models import User
+from account.serializers import UserSerializer
+from base import response
+
 
 
 class UserAuthViewSet(mixins.ListModelMixin,
@@ -12,13 +16,16 @@ class UserAuthViewSet(mixins.ListModelMixin,
                   viewsets.GenericViewSet):
 
 	permission_classes = (AllowAny,)
-	# queryset = models.City.objects.filter(is_published=True)
- #    serializer_class = serializers.CitySerializer
+	queryset = models.User.objects.all()
+	serializer_class = serializers.UserSerializer
 
 	@list_route(methods=['post'])
 	def register(self, request):
 		print("hello in side register")
-		serialized = UserSerializer(data=request.DATA)
+		serialized = UserSerializer()
+		print("ethe")
+		return response.Created({"success": "Account successfully created."})
+
 #     permission_classes = (AllowAny,)
 #     queryset = models.City.objects.filter(is_published=True)
 #     serializer_class = serializers.CitySerializer
